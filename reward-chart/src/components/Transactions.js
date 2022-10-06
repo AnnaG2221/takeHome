@@ -31,21 +31,22 @@ const Transactions = ({ data, countReward, reward }) => {
   }, [data]);
 
   return (
-    <div className="App container ui">
-      <table className="ui container">
+    <div className=" container table ui">
+      <h1>Statement</h1>
+      <table className="ui cell table striped">
         <tbody>
           <tr>
-            <th>name</th>
-            <th>product</th>
-            <th>date</th>
-            <th>amount</th>
-            {reward && <th>reward</th>}
+            <th>Name</th>
+            <th>Product</th>
+            <th>Date</th>
+            <th>Amount</th>
+            {reward && <th>Reward</th>}
           </tr>
           {mapData}
         </tbody>
       </table>
 
-      {mapData}
+      {/* {mapData} */}
     </div>
   );
 };

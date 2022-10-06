@@ -1,5 +1,4 @@
 import React from "react";
-import PersonalSummary from "./PersonalSummary";
 
 const RewardSummary = ({ summary }) => {
   const render = summary.map((e, i) => {
@@ -11,11 +10,11 @@ const RewardSummary = ({ summary }) => {
     );
   });
   return (
-    <div className=" container ui">
-      <table>
+    <div className=" ui table">
+      <table className="ui cell table striped  ">
         <tr>
-          <th>name</th>
-          <th>reward</th>
+          <th>Name</th>
+          <th>Reward</th>
         </tr>
         {render}
       </table>

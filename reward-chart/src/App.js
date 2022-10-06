@@ -1,6 +1,5 @@
 import logo from "./logo.svg";
 import "./App.css";
-import PersonalSummary from "./components/PersonalSummary";
 import RewardSummary from "./components/RewardSummary";
 import Transactions from "./components/Transactions";
 import { useState, useEffect } from "react";
@@ -12,7 +11,6 @@ function App() {
   const [summary, setSummary] = useState([]);
   const [showTransation, setShowTransation] = useState(true);
   const [showSummary, setShowSummary] = useState(false);
-  const [showPersonal, setShowPersonal] = useState(false);
   const [reward, setReward] = useState(false);
 
   // caculate reward function
@@ -46,9 +44,21 @@ function App() {
   const resetClick = () => {
     setReward(false);
     setShowTransation(true);
-    setShowPersonal(false);
     setShowSummary(false);
     setData([...data]);
+  };
+
+  // form submit handler
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const tem = data.filter((e) => e.name === value);
+    console.log(tem);
+    setData(tem);
+  };
+
+  //change Handler
+  const changeHandler = () => {
+    setValue(value);
   };
 
   //call api get data and set it in state data.
@@ -69,31 +79,30 @@ function App() {
   console.log(data);
 
   return (
-    <div className="ui container App">
+    <div className="ui container segment App">
       <h1>Transaction info</h1>
-      <form className="ui container ">
-        <input type="text" placeholder="please enter the name" />
-        <button>search</button>
-      </form>
-      <div className="ui container">
-        <button className="ui primary button small" onClick={summaryClick}>
+      <div className="">
+        <button className="ui primary button basic " onClick={summaryClick}>
           Show Summary
         </button>
         {showTransation && (
-          <button className="ui button primary" onClick={showRewardClick}>
+          <button
+            className="ui button primary basic "
+            onClick={showRewardClick}
+          >
             Show Reward
           </button>
         )}
-        <button className="ui button primary" onClick={resetClick}>
+        <button className="ui button primary basic " onClick={resetClick}>
           reset
         </button>
       </div>
-      <div className="ui container"></div>
-      {showTransation && (
-        <Transactions data={data} countReward={countReward} reward={reward} />
-      )}
-      {showSummary && <RewardSummary summary={summary} />}
-      {showPersonal && <PersonalSummary />}
+      <div className="ui container table">
+        {showTransation && (
+          <Transactions data={data} countReward={countReward} reward={reward} />
+        )}
+        {showSummary && <RewardSummary summary={summary} />}
+      </div>
     </div>
   );
 }
